@@ -25,7 +25,7 @@ export default {
       },
       // Base colors of the app
       colors: {
-        'primary': '#163E73',
+        'primary': '#0F2745',
         'secondary': '#1B1B1B',
         'tertiary': '#C3FFFF'
       }
