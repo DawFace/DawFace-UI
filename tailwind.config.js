@@ -8,8 +8,8 @@ export default {
     extend: {
       // Responsivness breakpoints
       screens: {
-        'sm': '640px',
-        // => @media (min-width: 640px) { ... }
+        'sm': '360px',
+        // => @media (min-width: 360px) { ... }
   
         'md': '768px',
         // => @media (min-width: 768px) { ... }
