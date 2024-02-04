@@ -1,11 +1,11 @@
 import { useRoutes } from 'react-router-dom';
-import Login from '../pages/Home';
+import Login from '../components/Login';
 import AppLayout from '../layout/AppLayout';
 
 const Router = () => {
   return useRoutes([
     {
-      path: '/login',
+      path: '/',
       element: <Login />,
     },
     {
