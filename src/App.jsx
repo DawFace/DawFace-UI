@@ -1,12 +1,11 @@
-import Login from "./components/Login";
-import "./App.css";
+import Login from './components/Login';
 
-function App() {
+const App = () => {
   return (
     <>
-    <Login/>
+      <Login />
     </>
   );
-}
+};
 
 export default App;
