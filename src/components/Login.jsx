@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import LoginForm from './LoginForm';
 
 const Login = () => {
   const [headerHeight, setHeaderHeight] = useState('h-5/6');
@@ -33,14 +34,8 @@ const Login = () => {
           <p className="md:text-5xl sm:text-4xl mt-10 select-none">Welcome to DawFace</p>
           <p className="text-xl mt-3 text-gray-400 select-none">Your face recognition system</p>
         </div>
-
-        <div>
-          <form action="" className="flex flex-col items-center">
-            <input type="text" name="email or username" placeholder="Email or username" />
-            <input type="password" name="password" placeholder="Password" />
-            <button>Login</button>
-          </form>
-        </div>
+        
+        <LoginForm />
       </header>
 
       <button
