@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Login = () => {
+const LoginPage = () => {
   const [headerHeight, setHeaderHeight] = useState('h-5/6');
 
   const toggleLogin = () => {
@@ -57,4 +57,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;
