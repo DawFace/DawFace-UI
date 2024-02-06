@@ -1,6 +1,6 @@
-import { useRoutes } from 'react-router-dom';
-import Login from '../components/Login';
 import AppLayout from '../layout/AppLayout';
+import Login from '../pages/Login';
+import { useRoutes } from 'react-router-dom';
 
 const Router = () => {
   return useRoutes([
