@@ -1,4 +1,5 @@
-import UploadForm from './components/UploadForm.jsx';
+import DragAndDropImage from './components/DragDropImage.jsx';
+// import UploadForm from './components/UploadForm.jsx';
 import Login from './pages/Login.jsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -7,7 +8,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={<UploadForm />} />
+        <Route path="/home" element={<DragAndDropImage />} />
       </Routes>
     </BrowserRouter>
   );
