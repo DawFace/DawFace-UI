@@ -17,24 +17,24 @@ const Login = () => {
 
   return (
     <div
-      className="bg-gradient-to-r 
-      from-red-500 
-      via-blue-400 
-      to-blue-900 
-        w-full h-screen flex justify-center sm:p-10 z-0"
+      className="bg-secondary w-full h-screen flex justify-center sm:p-10 z-0"
     >
       <header
         className={`
           transition-all
         bg-white 
-          md:w-[800px] 
+          md:w-[700px] 
           ${headerHeight}
           sm:w-full 
           drop-shadow-2xl 
           z-40
           transition-all ease-out duration-500`}
       >
-        <div className="bg-secondary h-[480px] w-[98%] m-2"></div>
+        <div className="bg-gradient-to-r 
+        from-red-500 
+        via-blue-400 
+        to-blue-900 
+        h-[480px] w-[98%] m-2"></div>
 
         <div className="text-center flex flex-col items-center">
           <p className="md:text-5xl sm:text-4xl mt-10 select-none">Welcome to DawFace</p>
