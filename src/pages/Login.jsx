@@ -2,14 +2,14 @@ import { useState } from 'react';
 import LoginForm from '../components/LoginForm';
 
 const Login = () => {
-  const [headerHeight, setHeaderHeight] = useState('h-5/6');
+  const [headerHeight, setHeaderHeight] = useState('h-4/6');
   const [showLoginForm, setShowLoginForm] = useState(false)
   const [loginFormScale, setLoginFormScale] = useState('scale-0')
   const [loginDisplay, setLoginDisplay] = useState('hidden')
 
 
   const toggleLogin = () => {
-    headerHeight === 'h-5/6' ? setHeaderHeight('h-full') : setHeaderHeight('h-5/6');
+    headerHeight === 'h-4/6' ? setHeaderHeight('h-5/6') : setHeaderHeight('h-4/6');
     showLoginForm === true ? setShowLoginForm(false) : setShowLoginForm(true);
     loginFormScale === 'scale-0' ? setLoginFormScale('scale-100') : setLoginFormScale('scale-0');
     loginDisplay === 'hidden' ? setLoginDisplay('display') : setLoginDisplay('hidden')
@@ -34,7 +34,7 @@ const Login = () => {
         from-red-500 
         via-blue-400 
         to-blue-900 
-        h-[480px] w-[98%] m-2"></div>
+        h-[360px] w-[98%] m-2"></div>
 
         <div className="text-center flex flex-col items-center">
           <p className="md:text-5xl sm:text-4xl mt-10 select-none">Welcome to DawFace</p>

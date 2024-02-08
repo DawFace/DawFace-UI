@@ -11,7 +11,6 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUser({username, password})
-
     axios.post('https://example.com/api', { 
         headers: {
           username: 'username',
