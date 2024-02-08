@@ -11,6 +11,7 @@ const DragAndDropImageUploader = () => {
 
   const handleDrop = (event) => {
     event.preventDefault();
+    setUploadedImg(event.dataTransfer.files)
   };
 
   return (
@@ -26,21 +27,20 @@ const DragAndDropImageUploader = () => {
         <div className="bg-tertiary flex flex-col items-center w-fit p-5 drop-shadow-2xl">
           {!uploadedImg && (
             <div
-              className="bg-none
-            flex flex-col items-center justify-center 
-            w-[360px] p-5 h-[360px]
-            border-2 border-dashed border-secondary rounded-md"
+              className="bg-red-500
+              flex flex-col items-center justify-center 
+              w-[360px] p-5 h-[360px]
+              border-2 border-dashed border-secondary rounded-md"
               onDragOver={handleDragOver}
               onDrop={handleDrop}
             >
               <p>Drag and drop here</p>
               <p>or</p>
-              <input 
-                type="file" 
-                multiple 
-                onChange={(event) => setUploadedImg(event.target.uploadedImg)}
-                hidden 
-                ref={inputRef}/>
+              <input type="file"
+                multiple
+                onChange={(event) => setUploadedImg(event.target.files)}
+                hidden
+                ref={inputRef} />
               <button
                 className="px-8 py-2 bg-secondary shadow-sm text-white tracking-wide 
                 rounded-full w-fit 
@@ -48,7 +48,7 @@ const DragAndDropImageUploader = () => {
                 transition-opacity ease-out"
                 onClick={() => inputRef.current.click()}
               >
-                Upload image
+                Upload a file
               </button>
             </div>
           )}
@@ -58,7 +58,6 @@ const DragAndDropImageUploader = () => {
             rounded-full w-fit 
             hover:opacity-90
             transition-colors ease-out"
-  
           >
             Recognize
           </button>
