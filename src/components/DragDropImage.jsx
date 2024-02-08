@@ -1,5 +1,6 @@
+import AuthContext from '../context/AuthContext';
 import Navbar from './Navbar';
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 
 const DragAndDropImageUploader = () => {
   const [uploadedImg, setUploadedImg] = useState(null);
@@ -14,6 +15,10 @@ const DragAndDropImageUploader = () => {
     setUploadedImg(event.dataTransfer.files)
   };
 
+  const {user} = useContext(AuthContext)
+
+  if (!user) return <h1>Not logged in</h1>
+  
   return (
     <div className="flex justify-center items-center w-full h-dvh">
       <div className="absolute top-0">
