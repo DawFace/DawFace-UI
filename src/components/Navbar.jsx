@@ -1,5 +1,3 @@
-import { Outlet } from 'react-router-dom';
-
 const Navbar = () => {
   return (
     <>
@@ -15,7 +13,6 @@ const Navbar = () => {
           </a>
         </div>
       </nav>
-      <Outlet />
     </>
   );
 };
