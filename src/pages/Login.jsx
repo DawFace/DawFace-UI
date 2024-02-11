@@ -1,4 +1,6 @@
 import { AuthContext } from '../AuthContext.jsx';
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -28,18 +30,23 @@ const Login = () => {
   });
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="w-full max-w-xs">
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="username"
-            >
+    <div className="bg-zinc-900 flex items-center justify-center h-screen">
+      <div className='absolute h-[150px] w-[150px] bg-primary rounded-full blur-md animate-bounce-more'></div>
+      <div className="bg-zinc-900/30 shadow-xl shadow-zinc-950 rounded-2xl z-10 w-full max-w-xs flex flex-col items-center justify-center">
+      <div>
+        <img src="src/assets/img/face-scan-square.svg" alt='face-recognition-icon' 
+          className='scale-75'/>
+      </div>
+        <p className="text-white font-bold text-3xl">DawFace</p>
+        <p className="text-gray-600">Your face recognition system</p>
+        <form className="px-8 pt-6 pb-8">
+          <div className="bg-zinc-800 mb-4 flex items-center rounded-lg py-3 px-5 focus:border-solid border border-gray-700 hover:border-gray-500">
+            <FontAwesomeIcon className="text-white" icon={faUser} />
+            <label className="hidden" htmlFor="username">
               Username
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="bg-transparent tracking-wide text-sm border-none w-full px-3 text-white placeholder:text-gray focus:outline-none"
               id="username"
               type="text"
               placeholder="Username"
@@ -47,25 +54,23 @@ const Login = () => {
               required
             />
           </div>
-          <div className="mb-6">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="password"
-            >
+          <div className="bg-zinc-800 mb-8 flex items-center rounded-lg py-3 px-5 focus:border-solid border border-gray-700 hover:border-gray-500">
+          <FontAwesomeIcon className='text-white' icon={faLock} />
+            <label className="hidden" htmlFor="password">
               Password
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="bg-transparent tracking-wide text-sm border-none w-full px-3 text-white placeholder:text-gray focus:outline-none"
               id="password"
               type="password"
-              placeholder="******************"
+              placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
           <div className="flex items-center justify-between">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="text-white py-2 px-4 w-full rounded-lg bg-primary hover:opacity-90"
               type="button"
               onClick={handleLogin}
             >
