@@ -1,18 +1,24 @@
+import { Link } from 'react-router-dom';
+
 const Navbar = () => {
   return (
     <>
-      <nav className="bg-white border-gray-200 dark:bg-gray-900">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a
-            href="#"
-            className="flex items-center space-x-3 rtl:space-x-reverse"
+      <div className="w-screen py-2 px-5 flex items-center justify-between">
+        <Link to={'/home'} className="font-extrabold tracking-tighter text-3xl">
+          DawFace
+        </Link>
+        <div>
+          <Link
+            to={'/'}
+            className="bg-tertiary font-semibold 
+            px-8 py-2 rounded-full w-fit
+            hover:bg-secondary hover:text-white
+            transition-colors ease-out"
           >
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              DawFace
-            </span>
-          </a>
+            Sign out
+          </Link>
         </div>
-      </nav>
+      </div>
     </>
   );
 };

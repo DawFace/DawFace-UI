@@ -1,9 +1,10 @@
-import UploadForm from '../components/UploadForm';
+import DragAndDropImage from '../components/DragAndDropImageUploader';
+// import UploadForm from '../components/UploadForm';
 
 const Home = () => {
   return (
     <>
-      <UploadForm />
+      <DragAndDropImage />
     </>
   );
 };
