@@ -1,4 +1,4 @@
-import DragAndDropImage from '../components/DragAndDropImageUploader';
+import DragAndDropImage from '../components/DragDropImage.jsx';
 // import UploadForm from '../components/UploadForm';
 
 const Home = () => {
