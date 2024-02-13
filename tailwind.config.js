@@ -23,9 +23,18 @@ export default {
         '2xl': '1536px',
         // => @media (min-width: 1536px) { ... }
       },
+      animation: {
+        'bounce-more': 'bounce-more 7s infinite',
+      },
+      keyframes: {
+        'bounce-more': {
+          '0%, 100%': { transform: 'translateY(-95%)'},
+          '50%': { transform: 'translateY(125%)', 'animation-timing-function': 'cubic-bezier(0, 0, 0.5, 0)'}
+        }
+      },
       // Base colors of the app
       colors: {
-        'primary': '#0F2745',
+        'primary': '#15345D',
         'secondary': '#1B1B1B',
         'tertiary': '#C3FFFF'
       }
