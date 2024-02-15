@@ -22,12 +22,6 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    if (!user) {
-      navigate('/login');
-    }
-  });
-
   return (
     <div className="bg-zinc-900 flex items-center justify-center h-screen">
       <div className='absolute h-[150px] w-[150px] bg-primary rounded-full blur-md animate-bounce-more'></div>
