@@ -23,8 +23,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    console.log(user);
-    if (user) {
+    if (!user) {
       navigate('/login');
     }
   });
@@ -52,6 +51,7 @@ const Login = () => {
               placeholder="Username"
               onChange={(e) => setUsername(e.target.value)}
               required
+              autoComplete='off'
             />
           </div>
           <div className="bg-zinc-800 mb-8 flex items-center rounded-lg py-3 px-5 focus:border-solid border border-gray-700 hover:border-gray-500">
@@ -66,6 +66,7 @@ const Login = () => {
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
               required
+              autoComplete='off'
             />
           </div>
           <div className="flex items-center justify-between">

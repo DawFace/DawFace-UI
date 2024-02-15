@@ -12,8 +12,6 @@ const ProtectedRoute = ({ children }) => {
     }
   });
 
-  console.log(user);
-
   return user ? children : null;
 };
 
