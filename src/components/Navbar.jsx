@@ -4,12 +4,12 @@ const Navbar = () => {
   return (
     <>
       <div className="w-screen py-2 px-5 flex items-center justify-between">
-        <Link to={'/home'} className="font-extrabold tracking-tighter text-3xl">
+        <Link to={'/'} className="font-extrabold tracking-tighter text-3xl">
           DawFace
         </Link>
         <div>
           <Link
-            to={'/'}
+            to={'/login'}
             className="bg-tertiary font-semibold 
             px-8 py-2 rounded-full w-fit
             hover:bg-secondary hover:text-white
