@@ -15,7 +15,17 @@ export const getDescriptor = async (image) => {
     .withFaceDescriptor();
 };
 
-export const drawLandmarks = (canvas, descriptor) => {
-  faceapi.draw.drawDetections(canvas, descriptor);
-  faceapi.draw.drawFaceLandmarks(canvas, descriptor);
+export const drawLandmarks = (picture, canvas, descriptor) => {
+  faceapi.matchDimensions(canvas, picture);
+
+  const result = faceapi.resizeResults(descriptor, {
+    height: picture.height,
+    width: picture.width
+  });
+
+  const drawBox = new faceapi.draw.DrawBox(result.detection.box);
+  const drawLandmarks = new faceapi.draw.DrawFaceLandmarks(result.landmarks);
+
+  drawBox.draw(canvas);
+  drawLandmarks.draw(canvas);
 };

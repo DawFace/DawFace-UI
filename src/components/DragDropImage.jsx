@@ -1,5 +1,6 @@
 import Navbar from './Navbar';
 import { useRef, useState } from 'react';
+import { drawLandmarks, getDescriptor } from '../utils/face-api/utils.js';
 
 const DragAndDropImageUploader = () => {
   const [uploadedImg, setUploadedImg] = useState(null);
@@ -7,6 +8,8 @@ const DragAndDropImageUploader = () => {
   const [dragText, setDragText] = useState('Drag and drop here');
 
   const inputRef = useRef();
+  const pictureRef = useRef();
+  const canvasRef = useRef();
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -40,12 +43,20 @@ const DragAndDropImageUploader = () => {
     }
   };
 
+  const launchRecognition = async (event) => {
+    event.preventDefault();
+    if(uploadedImg){
+      const picture = pictureRef.current;
+      const canvas = canvasRef.current;
+
+      const descriptor = await getDescriptor(picture);
+
+      drawLandmarks(picture, canvas, descriptor);
+    }
+  }
+
   return (
     <div className="flex justify-center items-center w-full h-dvh">
-      <div className="absolute top-0">
-        <Navbar />
-      </div>
-
       <form action="">
         <div className="bg-secondary text-white text-center py-2 text-xl">
           <p>Upload image for face recognition</p>
@@ -56,9 +67,10 @@ const DragAndDropImageUploader = () => {
               className="
             flex flex-col items-center justify-center 
             w-[360px] h-[360px]
-            border-2 border-dashed border-sky-500 rounded-md"
+            border-2 border-dashed border-sky-500 rounded-md relative"
             >
-              <img className="object-cover w-full h-full" src={uploadedImg} alt={imgName} />
+              <img className="object-cover w-full h-full absolute" src={uploadedImg} alt={imgName} ref={pictureRef}/>
+              <canvas className="absolute" ref={canvasRef}/>
             </div>
           ) : (
             <div
@@ -93,11 +105,11 @@ const DragAndDropImageUploader = () => {
           )}
 
           <button
-            type="submit"
             className="mt-5 px-8 py-2 bg-secondary shadow-sm text-white tracking-wide 
             rounded-full w-fit 
             hover:opacity-90
             transition-colors ease-out"
+            onClick={launchRecognition}
           >
             Recognize
           </button>
