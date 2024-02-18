@@ -12,6 +12,7 @@ const DragAndDropImageUploader = ({ references, users }) => {
   const [imgName, setImgName] = useState('No picture');
   const [dragText, setDragText] = useState('Drag and drop here');
   const [dragDropBackground, setDragDropBackground] = useState(null);
+  const [match, setMatch] = useState(null);
 
   const inputRef = useRef();
   const pictureRef = useRef();
@@ -73,16 +74,17 @@ const DragAndDropImageUploader = ({ references, users }) => {
             )[0]
           : null;
 
-      console.log(match);
+      setMatch(match);
     }
   };
 
   const deleteIUploadedImg = () => {
     setUploadedImg(null);
+    setMatch(null);
   };
 
   return (
-    <div className="bg-zinc-900 flex flex-col justify-center items-center w-full h-dvh">
+    <div className="bg-zinc-900 flex flex-row justify-center items-center w-full h-dvh gap-x-4">
       <div className="absolute top-80 z-10 sm:h-[120px] sm:w-[120px] md:h-[200px] md:w-[200px] bg-primary rounded-full animate-circular"></div>
       <form action="" className="z-20">
         <div className="bg-zinc-900/50 md:shadow-xl md:shadow-zinc-950 backdrop-blur-md md:rounded-2xl md:p-5">
@@ -154,18 +156,25 @@ const DragAndDropImageUploader = ({ references, users }) => {
           </div>
         </div>
       </form>
-      <div className='mt-8'>
-          {launchRecognition ? (
-            <div className='flex flex-col justify-center sm:w-[300px] md:w-[400px] bg-zinc-900 shadow-xl shadow-zinc-950 rounded-2xl p-5 text-white'>
-              <p>FirstName: </p>
-              <p>Name: </p>
+      <div className="z-20">
+        {match && (
+          <div className="flex flex-col justify-center sm:w-[300px] md:w-[400px] bg-zinc-900/50 backdrop-blur shadow-xl shadow-zinc-950 rounded-2xl p-5 text-white">
+            <p>First name: {match.firstName}</p>
+            <p>Last name: {match.name}</p>
+            <div
+              className="
+                flex flex-col items-center justify-center
+                md:w-[360px] md:h-[360px] mt-4 sm:w-[300px] sm:h-[300px]
+                border-2 rounded-md relative"
+            >
+              <img
+                className="object-cover w-full h-full absolute"
+                src={match.pictureUrl}
+              />
             </div>
-          ) : (
-            <div className='flex flex-col justify-center sm:w-[300px] md:w-[400px] bg-zinc-900 shadow-xl shadow-zinc-950 rounded-2xl p-5 text-white'>
-              <p>No match found</p>
-            </div>
-          )}
-        </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
