@@ -1,5 +1,7 @@
 import { drawLandmarks, getDescriptor } from '../utils/face-api/utils.js';
 import { useRef, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 const DragAndDropImageUploader = () => {
   const [uploadedImg, setUploadedImg] = useState(null);
@@ -57,6 +59,10 @@ const DragAndDropImageUploader = () => {
     }
   };
 
+  const deleteIUploadedImg = () => {
+    setUploadedImg(null);
+  }
+
   return (
     <div className="bg-zinc-900 flex justify-center items-center w-full h-dvh">
       <div className="absolute z-10 sm:h-[120px] sm:w-[120px] md:h-[200px] md:w-[200px] bg-primary rounded-full animate-circular"></div>
@@ -80,6 +86,12 @@ const DragAndDropImageUploader = () => {
                   ref={pictureRef}
                 />
                 <canvas className="absolute" ref={canvasRef} />
+                <div 
+                  className='absolute top-2 right-3 cursor-pointer text-gray-400/60 scale-150 
+                  hover:scale-[1.75] hover:text-gray-400 active:scale-[1.75]'
+                  onClick={deleteIUploadedImg} >
+                  <FontAwesomeIcon icon={faCircleXmark} />
+                  </div>
               </div>
             ) : (
               <div
@@ -97,7 +109,6 @@ const DragAndDropImageUploader = () => {
                 <input
                   type="file"
                   accept="image/*"
-                  multiple
                   onChange={handleUploadedFile}
                   hidden
                   ref={inputRef}
