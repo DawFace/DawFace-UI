@@ -82,8 +82,8 @@ const DragAndDropImageUploader = ({ references, users }) => {
   };
 
   return (
-    <div className="bg-zinc-900 flex justify-center items-center w-full h-dvh">
-      <div className="absolute z-10 sm:h-[120px] sm:w-[120px] md:h-[200px] md:w-[200px] bg-primary rounded-full animate-circular"></div>
+    <div className="bg-zinc-900 flex flex-col justify-center items-center w-full h-dvh">
+      <div className="absolute top-80 z-10 sm:h-[120px] sm:w-[120px] md:h-[200px] md:w-[200px] bg-primary rounded-full animate-circular"></div>
       <form action="" className="z-20">
         <div className="bg-zinc-900/50 md:shadow-xl md:shadow-zinc-950 backdrop-blur-md md:rounded-2xl md:p-5">
           <p className="text-white border-inherit font-bold text-center text-xl">
@@ -154,6 +154,18 @@ const DragAndDropImageUploader = ({ references, users }) => {
           </div>
         </div>
       </form>
+      <div className='mt-8'>
+          {launchRecognition ? (
+            <div className='flex flex-col justify-center sm:w-[300px] md:w-[400px] bg-zinc-900 shadow-xl shadow-zinc-950 rounded-2xl p-5 text-white'>
+              <p>FirstName: </p>
+              <p>Name: </p>
+            </div>
+          ) : (
+            <div className='flex flex-col justify-center sm:w-[300px] md:w-[400px] bg-zinc-900 shadow-xl shadow-zinc-950 rounded-2xl p-5 text-white'>
+              <p>No match found</p>
+            </div>
+          )}
+        </div>
     </div>
   );
 };
