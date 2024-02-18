@@ -3,6 +3,8 @@ import {
   drawLandmarks,
   getDescriptor,
 } from '../utils/face-api/utils.js';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRef, useState } from 'react';
 
 const DragAndDropImageUploader = ({ references, users }) => {
@@ -18,13 +20,13 @@ const DragAndDropImageUploader = ({ references, users }) => {
   const handleDragOver = (event) => {
     event.preventDefault();
     setDragText('Release to Upload');
-    setDragDropBackground('bg-white/5')
+    setDragDropBackground('bg-white/5');
   };
 
   const handleDragLeave = (event) => {
     event.preventDefault();
     setDragText('Drag and drop here');
-    setDragDropBackground(null)
+    setDragDropBackground(null);
   };
 
   const handleDrop = (event) => {
@@ -59,7 +61,7 @@ const DragAndDropImageUploader = ({ references, users }) => {
 
       drawLandmarks(picture, canvas, descriptor);
 
-      const maxDescriptorDistance = 0.5;
+      const maxDescriptorDistance = 0.6;
       const faceMatcher = createFaceMatcher(references, maxDescriptorDistance);
 
       const occurrence = faceMatcher.findBestMatch(descriptor.descriptor);
@@ -75,6 +77,10 @@ const DragAndDropImageUploader = ({ references, users }) => {
     }
   };
 
+  const deleteIUploadedImg = () => {
+    setUploadedImg(null);
+  };
+
   return (
     <div className="bg-zinc-900 flex justify-center items-center w-full h-dvh">
       <div className="absolute z-10 sm:h-[120px] sm:w-[120px] md:h-[200px] md:w-[200px] bg-primary rounded-full animate-circular"></div>
@@ -87,8 +93,8 @@ const DragAndDropImageUploader = ({ references, users }) => {
             {uploadedImg ? (
               <div
                 className="
-                flex flex-col items-center justify-center 
-                w-[360px] h-[360px] mt-4 sm:w-[300px] sm:h-[300px]
+                flex flex-col items-center justify-center
+                md:w-[360px] md:h-[360px] mt-4 sm:w-[300px] sm:h-[300px]
                 border-2 border-dashed border-white rounded-md relative"
               >
                 <img
@@ -98,6 +104,13 @@ const DragAndDropImageUploader = ({ references, users }) => {
                   ref={pictureRef}
                 />
                 <canvas className="absolute" ref={canvasRef} />
+                <div
+                  className="absolute top-2 right-3 cursor-pointer text-gray-400/60 scale-150
+                  hover:scale-[1.75] hover:text-gray-400 active:scale-[1.75]"
+                  onClick={deleteIUploadedImg}
+                >
+                  <FontAwesomeIcon icon={faCircleXmark} />
+                </div>
               </div>
             ) : (
               <div
@@ -115,7 +128,6 @@ const DragAndDropImageUploader = ({ references, users }) => {
                 <input
                   type="file"
                   accept="image/*"
-                  multiple
                   onChange={handleUploadedFile}
                   hidden
                   ref={inputRef}
