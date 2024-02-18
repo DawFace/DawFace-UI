@@ -88,7 +88,7 @@ const DragAndDropImageUploader = ({ references, users }) => {
               <div
                 className="
                 flex flex-col items-center justify-center 
-                w-[360px] h-[360px] mt-4 sm:w-[300px] sm:h-[300px]
+                md:w-[360px] md:h-[360px] mt-4 sm:w-[300px] sm:h-[300px]
                 border-2 border-dashed border-white rounded-md relative"
               >
                 <img
