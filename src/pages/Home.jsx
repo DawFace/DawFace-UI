@@ -1,16 +1,19 @@
 import DragAndDropImage from '../components/DragDropImage.jsx';
 import Navbar from '../components/Navbar.jsx';
-import { loadModels } from '../utils/face-api/utils.js';
+import { loadModels, loadReferences } from '../utils/face-api/utils.js';
 import { getRequest } from '../utils/fetcher/methods/index.js';
-import Cookies from 'js-cookie';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Home = () => {
+  const [references, setReferences] = useState([]);
+  const [users, setUsers] = useState([]);
+
   useEffect(() => {
     loadModels().then(() => {
-      getRequest(
-        'https://z25y7zw6ii.execute-api.eu-west-3.amazonaws.com/Prod/ping'
-      ).then((res) => console.log(res.data));
+      getRequest(`${import.meta.env.VITE_API_URL}/api/users`).then((res) => {
+        setUsers(res);
+        loadReferences(res).then((references) => setReferences(references));
+      });
     });
   }, []);
 
@@ -19,7 +22,7 @@ const Home = () => {
       <div className="absolute top-0">
         <Navbar />
       </div>
-      <DragAndDropImage />
+      <DragAndDropImage references={references} users={users} />
     </>
   );
 };

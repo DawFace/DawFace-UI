@@ -1,7 +1,11 @@
-import { drawLandmarks, getDescriptor } from '../utils/face-api/utils.js';
+import {
+  createFaceMatcher,
+  drawLandmarks,
+  getDescriptor,
+} from '../utils/face-api/utils.js';
 import { useRef, useState } from 'react';
 
-const DragAndDropImageUploader = () => {
+const DragAndDropImageUploader = ({ references, users }) => {
   const [uploadedImg, setUploadedImg] = useState(null);
   const [imgName, setImgName] = useState('No picture');
   const [dragText, setDragText] = useState('Drag and drop here');
@@ -51,6 +55,20 @@ const DragAndDropImageUploader = () => {
       const descriptor = await getDescriptor(picture);
 
       drawLandmarks(picture, canvas, descriptor);
+
+      const maxDescriptorDistance = 0.5;
+      const faceMatcher = createFaceMatcher(references, maxDescriptorDistance);
+
+      const occurrence = faceMatcher.findBestMatch(descriptor.descriptor);
+
+      const match =
+        occurrence.label !== 'unknown'
+          ? users.filter(
+              (user) => `${user.name} ${user.firstName}` === occurrence.label
+            )[0]
+          : null;
+
+      console.log(match);
     }
   };
 

@@ -20,12 +20,37 @@ export const drawLandmarks = (picture, canvas, descriptor) => {
 
   const result = faceapi.resizeResults(descriptor, {
     height: picture.height,
-    width: picture.width
+    width: picture.width,
   });
 
   const drawBox = new faceapi.draw.DrawBox(result.detection.box);
-  const drawLandmarks = new faceapi.draw.DrawFaceLandmarks(result.landmarks);
 
   drawBox.draw(canvas);
-  drawLandmarks.draw(canvas);
+};
+
+export const loadReferences = async (data) => {
+  return await Promise.all(
+    data.map(async (user) => {
+      const img = await faceapi.fetchImage(user.pictureUrl);
+
+      const fullFaceDescription = await faceapi
+        .detectSingleFace(img)
+        .withFaceLandmarks()
+        .withFaceDescriptor();
+
+      if (!fullFaceDescription) {
+        throw new Error(`no faces detected for ${user.name}`);
+      }
+
+      const faceDescriptors = [fullFaceDescription.descriptor];
+      return new faceapi.LabeledFaceDescriptors(
+        `${user.name} ${user.firstName}`,
+        faceDescriptors
+      );
+    })
+  );
+};
+
+export const createFaceMatcher = (references, maxDescriptorDistance) => {
+  return new faceapi.FaceMatcher(references, maxDescriptorDistance);
 };
