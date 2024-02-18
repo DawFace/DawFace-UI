@@ -1,6 +1,5 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
-import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
