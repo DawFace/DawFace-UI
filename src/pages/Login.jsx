@@ -25,10 +25,10 @@ const Login = () => {
   return (
     <div className="bg-zinc-900 flex items-center justify-center h-screen">
       <div className='absolute h-[150px] w-[150px] bg-primary rounded-full blur-md animate-bounce-more'></div>
-      <div className="bg-zinc-900/30 shadow-xl shadow-zinc-950 rounded-2xl z-10 w-full max-w-xs flex flex-col items-center justify-center">
+      <div className="bg-zinc-900/30 md:shadow-xl md:shadow-zinc-950 md:rounded-2xl z-10 w-full max-w-xs flex flex-col items-center justify-center">
       <div>
         <img src="src/assets/img/face-scan-square.svg" alt='face-recognition-icon' 
-          className='scale-75'/>
+          className='scale-[0.7]'/>
       </div>
         <p className="text-white font-bold text-3xl">DawFace</p>
         <p className="text-gray-600">Your face recognition system</p>

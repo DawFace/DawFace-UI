@@ -5,7 +5,7 @@ export default {
     extend: {
       // Responsivness breakpoints
       screens: {
-        sm: '360px',
+        sm: '300px',
         // => @media (min-width: 360px) { ... }
 
         md: '768px',
