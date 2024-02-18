@@ -84,10 +84,10 @@ const DragAndDropImageUploader = ({ references, users }) => {
   };
 
   return (
-    <div className="bg-zinc-900 flex flex-row justify-center items-center w-full h-dvh gap-x-4">
+    <div className="bg-zinc-900 flex flex-row justify-center w-full h-dvh gap-x-4">
       <div className="absolute top-80 z-10 sm:h-[120px] sm:w-[120px] md:h-[200px] md:w-[200px] bg-primary rounded-full animate-circular"></div>
       <form action="" className="z-20">
-        <div className="bg-zinc-900/50 md:shadow-xl md:shadow-zinc-950 backdrop-blur-md md:rounded-2xl md:p-5">
+        <div className="bg-zinc-900/50 md:shadow-xl md:shadow-zinc-950 backdrop-blur-md md:rounded-2xl md:p-5 mt-40">
           <p className="text-white border-inherit font-bold text-center text-xl">
             Image to recognize
           </p>
@@ -158,9 +158,10 @@ const DragAndDropImageUploader = ({ references, users }) => {
       </form>
       <div className="z-20">
         {match && (
-          <div className="flex flex-col justify-center sm:w-[300px] md:w-[400px] bg-zinc-900/50 backdrop-blur shadow-xl shadow-zinc-950 rounded-2xl p-5 text-white">
-            <p>First name: {match.firstName}</p>
-            <p>Last name: {match.name}</p>
+          <div className="bg-zinc-900/50 md:shadow-xl md:shadow-zinc-950 backdrop-blur-md md:rounded-2xl md:p-5 mt-40 text-white">
+            <p className="border-inherit font-bold text-center text-xl">
+              Base Image
+            </p>
             <div
               className="
                 flex flex-col items-center justify-center
@@ -172,6 +173,8 @@ const DragAndDropImageUploader = ({ references, users }) => {
                 src={match.pictureUrl}
               />
             </div>
+            <p>First name: {match.firstName}</p>
+            <p>Last name: {match.name}</p>
           </div>
         )}
       </div>
