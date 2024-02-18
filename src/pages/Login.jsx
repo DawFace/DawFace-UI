@@ -1,8 +1,8 @@
-import { AuthContext } from '../AuthContext.jsx';
 import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useContext, useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -13,21 +13,24 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const { user, setUser } = useContext(AuthContext);
-
   const handleLogin = () => {
     if (username === 'kim' && password === 'dawson') {
-      setUser({ username: username, password: password });
-      setErrorMsg('Logged successfully')
+      Cookies.set(
+        'loggedUser',
+        JSON.stringify({ username: username, password: password })
+      );
+      setErrorMsg('Logged successfully');
       navigate('/');
-    } else if (username !== 'kim' && password === 'dawson') {
+    } else if (username.trim() === '' || password.trim() === '') {
+      setErrorMsg('* Username and password required');
+    } else if (username.trim() !== 'kim') {
       setErrorMsg('* Invalid username');
-    } else if (username === 'kim' && password !== 'dawson') {
+    } else if (username.trim() === 'kim' && password.trim() !== 'dawson') {
       setErrorMsg('* Invalid password');
     } else if (username !== 'kim' && password !== 'dawson') {
       setErrorMsg('* Invalid username and password');
     } else {
-      setErrorMsg('* Username and password required');
+      setErrorMsg('* Username or password invalid');
     }
   };
 
@@ -37,7 +40,7 @@ const Login = () => {
   };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value)
+    setPassword(e.target.value);
     setErrorMsg('');
   };
 
@@ -50,7 +53,6 @@ const Login = () => {
       handleLogin();
     }
   };
-
 
   return (
     <div className="bg-zinc-900 flex items-center justify-center h-screen">
