@@ -1,5 +1,6 @@
 import { AuthContext } from '../AuthContext.jsx';
 import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +9,7 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const [visibility, setVisibility] = useState(false)
 
   const navigate = useNavigate();
 
@@ -22,6 +24,8 @@ const Login = () => {
       setErrorMsg('* Invalid username');
     } else if (username === 'kim' && password !== 'dawson') {
       setErrorMsg('* Invalid password');
+    } else if (username !== 'kim' && password !== 'dawson') {
+      setErrorMsg('* Invalid username and password');
     } else {
       setErrorMsg('* Username and password required');
     }
@@ -30,12 +34,23 @@ const Login = () => {
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
     setErrorMsg('');
-  }
+  };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value)
     setErrorMsg('');
-  }
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEnterKeyDown, true)
+  })
+  
+  const handleEnterKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
+
 
   return (
     <div className="bg-zinc-900 flex items-center justify-center h-screen">
@@ -74,12 +89,15 @@ const Login = () => {
             <input
               className="bg-transparent tracking-wide text-sm border-none w-full px-3 text-white placeholder:text-gray focus:outline-none"
               id="password"
-              type="password"
+              type={visibility ? "text" : "password"}
               placeholder="Password"
               onChange={handlePasswordChange}
               autoComplete="off"
               required
             />
+            <div className='text-white' onClick={() => setVisibility(!visibility)}>
+            {visibility ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+            </div>
           </div>
           <div className="inline-block text-red-400 text-[13px] mt-3">
             {errorMsg}
