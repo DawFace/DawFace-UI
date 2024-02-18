@@ -5,6 +5,7 @@ const DragAndDropImageUploader = () => {
   const [uploadedImg, setUploadedImg] = useState(null);
   const [imgName, setImgName] = useState('No picture');
   const [dragText, setDragText] = useState('Drag and drop here');
+  const [dragDropBackground, setDragDropBackground] = useState(null);
 
   const inputRef = useRef();
   const pictureRef = useRef();
@@ -13,11 +14,13 @@ const DragAndDropImageUploader = () => {
   const handleDragOver = (event) => {
     event.preventDefault();
     setDragText('Release to Upload');
+    setDragDropBackground('bg-white/5')
   };
 
   const handleDragLeave = (event) => {
     event.preventDefault();
     setDragText('Drag and drop here');
+    setDragDropBackground(null)
   };
 
   const handleDrop = (event) => {
@@ -60,15 +63,15 @@ const DragAndDropImageUploader = () => {
       <form action="" className="z-20">
         <div className="bg-zinc-900/50 shadow-xl shadow-zinc-950 backdrop-blur-md rounded-2xl p-5">
           <p className="text-white border-inherit font-bold text-center text-xl">
-            Image for face recognition
+            Image to recognize
           </p>
           <div className="flex flex-col items-center w-fit">
             {uploadedImg ? (
               <div
                 className="
-            flex flex-col items-center justify-center 
-            w-[360px] h-[360px]
-            border-2 border-dashed border-sky-500 rounded-md relative"
+                flex flex-col items-center justify-center 
+                w-[360px] h-[360px] mt-4
+                border-2 border-dashed border-white rounded-md relative"
               >
                 <img
                   className="object-cover w-full h-full absolute"
@@ -80,11 +83,11 @@ const DragAndDropImageUploader = () => {
               </div>
             ) : (
               <div
-                className="
+                className={`
               flex flex-col items-center justify-center 
               w-[360px] h-[360px] mt-4
               border-2 border-dashed border-white rounded-md
-              text-white font-semibold"
+              text-white font-semibold ${dragDropBackground}`}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
@@ -100,7 +103,7 @@ const DragAndDropImageUploader = () => {
                   ref={inputRef}
                 />
                 <button
-                  className="font-bold py-2 px-6 w-content rounded-lg mt-5 bg-primary
+                  className="font-bold py-2 px-6 w-content rounded-lg mt-1 bg-primary
                   hover:shadow-md hover:shadow-zinc-950 text-white
                   hover:-translate-y-px hover:-translate-x-px"
                   onClick={handleUpload}
