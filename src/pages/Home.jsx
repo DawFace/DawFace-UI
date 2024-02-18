@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <>
       <div className="relative">
-        {loading && <Loader />}
+        {/* {loading && <Loader />} */}
         <div className="absolute top-0">
           <Navbar />
         </div>

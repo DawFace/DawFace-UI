@@ -60,7 +60,7 @@ const Login = () => {
       <div className="bg-zinc-900/30 md:shadow-xl md:shadow-zinc-950 md:rounded-2xl z-10 w-full max-w-xs flex flex-col items-center justify-center">
         <div>
           <img
-            src="src/assets/img/face-scan-square.svg"
+            src="/assets/img/face-scan-square.svg"
             alt="face-recognition-icon"
             className="scale-[0.7]"
           />
