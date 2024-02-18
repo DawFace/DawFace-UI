@@ -14,7 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    if (username === 'kim' && password === 'dawson') {
+    if (username === 'fiantso' && password === 'harena') {
       Cookies.set(
         'loggedUser',
         JSON.stringify({ username: username, password: password })
@@ -23,11 +23,11 @@ const Login = () => {
       navigate('/');
     } else if (username.trim() === '' || password.trim() === '') {
       setErrorMsg('* Username and password required');
-    } else if (username.trim() !== 'kim') {
+    } else if (username.trim() !== 'fiantso') {
       setErrorMsg('* Invalid username');
-    } else if (username.trim() === 'kim' && password.trim() !== 'dawson') {
+    } else if (username.trim() === 'fiantso' && password.trim() !== 'harena') {
       setErrorMsg('* Invalid password');
-    } else if (username !== 'kim' && password !== 'dawson') {
+    } else if (username !== 'fiantso' && password !== 'harena') {
       setErrorMsg('* Invalid username and password');
     } else {
       setErrorMsg('* Username or password invalid');
