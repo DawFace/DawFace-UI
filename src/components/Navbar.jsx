@@ -1,21 +1,32 @@
-import { Outlet } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const logout = () => {
+    Cookies.remove('loggedUser');
+  };
+
   return (
     <>
-      <nav className="bg-white border-gray-200 dark:bg-gray-900">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a
-            href="#"
-            className="flex items-center space-x-3 rtl:space-x-reverse"
+      <div className="w-screen py-2 px-5 flex items-center justify-between">
+        <Link
+          to={'/'}
+          className="text-white font-extrabold tracking-tighter text-3xl"
+        >
+          DawFace
+        </Link>
+        <div>
+          <Link
+            to={'/login'}
+            className="text-white py-2 px-4 w-full rounded-lg 
+            bg-primary hover:bg-primary/70 border-solid border border-zinc-900 hover:border hover:border-white
+            transition-colors ease-out"
+            onClick={logout}
           >
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              DawFace
-            </span>
-          </a>
+            Sign out
+          </Link>
         </div>
-      </nav>
-      <Outlet />
+      </div>
     </>
   );
 };
